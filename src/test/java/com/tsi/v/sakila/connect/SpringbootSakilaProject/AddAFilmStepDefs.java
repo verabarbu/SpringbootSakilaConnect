@@ -1,4 +1,4 @@
-package com.tsi.v.sakila.connect.SpringbootSakilaProject;
+/*package com.tsi.v.sakila.connect.SpringbootSakilaProject;
 
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
@@ -38,4 +38,4 @@ public class AddAFilmStepDefs {
         throw new PendingException();
     }
 
-}
+}*/

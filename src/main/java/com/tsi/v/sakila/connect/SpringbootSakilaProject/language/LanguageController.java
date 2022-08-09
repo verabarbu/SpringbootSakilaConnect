@@ -17,7 +17,7 @@ public class LanguageController {
 
         //@ResponseBody
         //Get request / read function
-        //Returns all categories
+        //Returns all languages
         @GetMapping("/All_Languages")
         public @ResponseBody
         Iterable<Language> getAllLanguages(){

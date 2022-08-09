@@ -1,4 +1,4 @@
-package com.tsi.v.sakila.connect.SpringbootSakilaProject;
+/*package com.tsi.v.sakila.connect.SpringbootSakilaProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,4 +10,4 @@ class SpringbootSakilaProjectApplicationTests {
 	void contextLoads() {
 	}
 
-}
+}*/
