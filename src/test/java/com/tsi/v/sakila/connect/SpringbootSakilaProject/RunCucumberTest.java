@@ -1,6 +1,6 @@
-/*package com.tsi.v.sakila.connect.SpringbootSakilaProject;
+//package com.tsi.v.sakila.connect.SpringbootSakilaProject;
 
-import io.cucumber.junit.Cucumber;
+/*import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 

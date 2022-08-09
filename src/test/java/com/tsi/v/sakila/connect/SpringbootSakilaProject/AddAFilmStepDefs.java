@@ -1,41 +1,56 @@
-/*package com.tsi.v.sakila.connect.SpringbootSakilaProject;
+//package com.tsi.v.sakila.connect.SpringbootSakilaProject;
 
-import io.cucumber.java.PendingException;
+
+/*import com.tsi.v.sakila.connect.SpringbootSakilaProject.film.Film;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class AddAFilmStepDefs {
 
-    @Given("^the user inputed the title$")
-    public void the_user_inputed_the_title() throws Throwable{
-        //code
-        throw new PendingException();
+    Film film;
+    Exception exception;
+
+    @Given("the user inputed all the values")
+    public void addNewFilm(){
+        film = new Film();
+        film.setTitle("The Northmen");
+        film.setDescription("Viking");
+        film.setRelease_year(2002);
+        film.setLanguage_id(1);
+        film.setOriginal_language_id(1);
+        film.setRental_duration(3);
+        film.setRental_rate(BigDecimal.valueOf(4.99));
+        film.setLength(120);
+        film.setRating("G");
+        film.setSpecial_features("Trailers");
     }
-    @Given("^the user inputed the description$")
-    public void the_user_inputed_the_description() throws Throwable{
-        //code
-        throw new PendingException();
+
+    @When("the user submits the add a new film method")
+    public void addFilm(){
+        try {
+            film = new Film();
+        } catch (Exception e){
+            exception = e;
+        }
     }
-    @Given("^the user inputed the release_year$")
-    public void the_user_inputed_the_release_year() throws Throwable{
-        //code
-        throw new PendingException();
-    }
-    @Given("^the user inputed the language_id$")
-    public void the_user_inputed_the_language_id() throws Throwable{
-        //code
-        throw new PendingException();
-    }
-    @When("^the user submits the set method$")
-    public void the_user_submits_the_set_method() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-    @Then("^the film is added$")
-    public void the_film_is_added() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Then("the film has all fields completed")
+    public void the_film_has_all_fields_completed(){
+        assertNotNull(film.getTitle(), "title not null");
+        assertNotNull(film.getDescription(), "description not null");
+        assertNotNull(film.getRelease_year(), "release year not null");
+        assertNotNull(film.getLanguage_id(), "language id not null");
+        assertNotNull(film.getOriginal_language_id(), "original language it not null");
+        assertNotNull(film.getRental_duration(), "rental duration not null");
+        assertNotNull(film.getRental_rate(), "rental rate not null");
+        assertNotNull(film.getLength(), "length not null");
+        assertNotNull(film.getRating(), "rating not null");
+        assertNotNull(film.getSpecial_features(), "special features not null");
     }
 
 }*/
+
