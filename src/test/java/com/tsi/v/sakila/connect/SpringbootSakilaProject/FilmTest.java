@@ -130,13 +130,13 @@ class FilmTest {
     @Test
     void test_getCategory_id(){
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 3, null, 50, null, "G", "Trailers", 1);
-        assertEquals(1, testFilmNews.getCategory_id(), "Can't get category id");
+        assertEquals(Optional.of(1), testFilmNews.getCategory_id(), "Can't get category id");
     }
     @Test
     void test_setCategory_id(){
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 3, null, 50, null, "G", "Trailers", 1);
         testFilmNews.setCategory_id(1);
-        assertEquals(1, testFilmNews.getCategory_id(), "Can't set category id" );
+        assertEquals(Optional.of(1), testFilmNews.getCategory_id(), "Can't set category id" );
     }
 
 
