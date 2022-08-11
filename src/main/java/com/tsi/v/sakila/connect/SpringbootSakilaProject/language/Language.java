@@ -12,6 +12,10 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int languageId;
 
+    /*@ManyToMany(mappedBy = "filmLanguage")
+    Set<Film> languageFilm;*/
+
+
     //Attribute
     private String name;
 

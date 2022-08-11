@@ -35,6 +35,14 @@ public class Film {
     )
     Set<Category> filmCategory;
 
+    /*@ManyToMany
+    @JoinTable(
+            name = "film_language",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id")
+    )
+    Set<Language> filmLanguage;*/
+
     //Attributes
     private String title;
     private String description;
@@ -198,4 +206,11 @@ public class Film {
         this.filmCategory = filmCategory;
     }
 
+    /*public Set<Language> getFilmLanguage() {
+        return filmLanguage;
+    }
+
+    public void setFilmLanguage(Set<Language> filmLanguage) {
+        this.filmLanguage = filmLanguage;
+    }*/
 }

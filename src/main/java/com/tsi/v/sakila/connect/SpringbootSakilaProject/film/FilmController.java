@@ -69,6 +69,10 @@ public class FilmController {
         return filmRepository.findByFilmCategoryName(name);
     }
 
+    /*@GetMapping("/Get_Films_By_Language")
+    public @ResponseBody
+    List<Film> getFilmsByLanguage(@RequestParam String name){return filmRepository.findByFilmLanguageName(name);}*/
+
     //Updates films attributes
     @PatchMapping("/Film/{film_id}")
     public @ResponseBody Film updateFilmById(@PathVariable int film_id, @RequestBody FilmNews filmNews){
