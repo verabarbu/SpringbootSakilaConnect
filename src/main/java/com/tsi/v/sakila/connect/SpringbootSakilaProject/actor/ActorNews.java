@@ -9,10 +9,19 @@ public class ActorNews {
     private String firstName;
     private String lastName;
 
+    //Constructor
+    public ActorNews(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    //Empty Constructor
+    public ActorNews(){}
+
     //Methods
     public Optional<String> getFirstName(){return Optional.ofNullable(firstName);}
-    public void getFirstName(String firstName){this.firstName = firstName;}
+    public void setFirstName(String firstName){this.firstName = firstName;}
 
     public Optional<String> getLastName(){return Optional.ofNullable(lastName);}
-    public void getLastName(String lastName){this.lastName = lastName;}
+    public void setLastName(String lastName){this.lastName = lastName;}
 }

@@ -22,11 +22,9 @@ public class ActorController {
     //@ResponseBody
     //Insert new film based on attributes: firstName, lastName
     @PostMapping("/Add_New_Actor")
-    public @ResponseBody String addNewActor(@RequestParam String firstName, @RequestParam String lastName){
-        Actor a = new Actor(firstName, lastName);
-        System.out.println(firstName + " " + lastName);
-        actorRepository.save(a);
-        return "saved";
+    public @ResponseBody
+    void addNewActor(@RequestBody ActorNews actorNews){
+        Actor actor = actorRepository.save(new Actor(actorNews));
     }
 
     //Get request / read function

@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,15 +23,11 @@ public class FilmController {
     //@ResponseBody
     //Insert new film based on attributes: title, description, release_year, language_id, original_language_id, rental_duration, rental_rate,length, replacement_cost, rating, special features
     @PostMapping("/Add_New_Film")
-    public @ResponseBody String addNewFilm(@RequestParam String title, @RequestParam String description, @RequestParam Integer release_year, @RequestParam Integer language_id,
-                                           @RequestParam Integer original_language_id, @RequestParam Integer rental_duration, @RequestParam BigDecimal rental_rate,
-                                           @RequestParam Integer length, @RequestParam BigDecimal replacement_cost, @RequestParam String rating, @RequestParam String special_features){
-        Film f = new Film(title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features);
-        System.out.println(title + " " + description + " " + release_year + " " + language_id +" " + original_language_id + " " + rental_duration + " " + rental_rate + " " +
-                length + " " + replacement_cost + " " + rating + " " + special_features);
-        filmRepository.save(f);
-        return "saved";
+    public @ResponseBody
+    void addNewFilm(@RequestBody FilmNews filmNews){
+        Film film = filmRepository.save(new Film(filmNews));
     }
+
     //Get request / read function
     //Returns all films
     @GetMapping("/All_Films")
@@ -58,7 +53,7 @@ public class FilmController {
     //Returns films based on actor firstName and lastName input
     @GetMapping("/Get_Films_By_Actor")
     public @ResponseBody
-    List<Film> getFilmsByActor(@RequestParam String firstName,@RequestParam String lastName){
+    List<Film> getFilmsByActor(@RequestParam String firstName, @RequestParam String lastName){
         return filmRepository.findByFilmActorFirstNameAndFilmActorLastName(firstName, lastName);
     }
 

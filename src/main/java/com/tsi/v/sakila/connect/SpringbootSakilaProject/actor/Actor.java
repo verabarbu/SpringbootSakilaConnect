@@ -27,12 +27,6 @@ public class Actor {
     @Column(name = "last_name")
     private String lastName;
 
-    //Constructor
-    public Actor(String firstName, String lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     //Data Transfer Object Constructor
     public Actor(ActorNews actorNews){
         this.updateFromActorNews(actorNews);

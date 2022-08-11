@@ -56,22 +56,6 @@ public class Film {
     private String rating;
     private String special_features;
 
-    //Constructor
-    public Film(String title, String description,Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features){
-        this.title = title;
-        this.description = description;
-        this.release_year = release_year;
-        this.language_id = language_id;
-        this.original_language_id = original_language_id;
-        this.rental_duration = rental_duration;
-        this.rental_rate = rental_rate;
-        this.length = length;
-        this.replacement_cost = replacement_cost;
-        this.rating = rating;
-        this.special_features = special_features;
-
-    }
-
     //Data Transfer Object Constructor
     public Film(FilmNews filmNews){
         this.updateFromFilmNews(filmNews);
