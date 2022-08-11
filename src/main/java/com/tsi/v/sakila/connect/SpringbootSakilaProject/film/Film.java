@@ -5,6 +5,8 @@ import com.tsi.v.sakila.connect.SpringbootSakilaProject.category.Category;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,7 +35,8 @@ public class Film {
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    Set<Category> filmCategory;
+    //Set<Category> filmCategory;
+    List<Category> filmCategory = new ArrayList<>();
 
     /*@ManyToMany
     @JoinTable(
@@ -55,6 +58,8 @@ public class Film {
     private BigDecimal replacement_cost;
     private String rating;
     private String special_features;
+    private Integer category_id;
+
 
     //Data Transfer Object Constructor
     public Film(FilmNews filmNews){
@@ -77,6 +82,8 @@ public class Film {
         this.replacement_cost = filmNews.getReplacement_cost().orElse(replacement_cost);
         this.rating = filmNews.getRating().orElse(rating);
         this.special_features = filmNews.getSpecial_features().orElse(special_features);
+        //this.category_id = filmNews.getCategory_id();
+        this.category_id = filmNews.getCategory_id().orElse(category_id);
 
     }
 
@@ -175,20 +182,29 @@ public class Film {
     public void setSpecial_features(String special_features) {
         this.special_features = special_features;
     }
-   public Set<Actor> getFilmActor(){
+
+    /*public Integer getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }*/
+
+    public Set<Actor> getFilmActor(){
         return filmActor;
    }
    public void setFilmActor(Set<Actor> filmActor){
         this.filmActor = filmActor;
    }
 
-    public Set<Category> getFilmCategory() {
+    /*public Set<Category> getFilmCategory() {
         return filmCategory;
     }
 
     public void setFilmCategory(Set<Category> filmCategory) {
         this.filmCategory = filmCategory;
-    }
+    }*/
 
     /*public Set<Language> getFilmLanguage() {
         return filmLanguage;
@@ -197,4 +213,12 @@ public class Film {
     public void setFilmLanguage(Set<Language> filmLanguage) {
         this.filmLanguage = filmLanguage;
     }*/
+
+    public List<Category> getFilmCategory() {
+        return filmCategory;
+    }
+
+    public void setFilmCategory(List<Category> filmCategory) {
+        this.filmCategory = filmCategory;
+    }
 }

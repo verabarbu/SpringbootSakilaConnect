@@ -1,9 +1,11 @@
 package com.tsi.v.sakila.connect.SpringbootSakilaProject.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.film.Film;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -16,8 +18,10 @@ public class Category {
     private int categoryId;
 
     //@ManyToMany relationship with Film
+    @JsonIgnore
     @ManyToMany(mappedBy = "filmCategory")
-    Set<Film> categoryFilm;
+    List<Film> films = new ArrayList<>();
+    //Set<Film> categoryFilm;
 
     //Attribute
     private String name;
@@ -45,5 +49,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(List<Film> films) {
+        this.films = films;
     }
 }

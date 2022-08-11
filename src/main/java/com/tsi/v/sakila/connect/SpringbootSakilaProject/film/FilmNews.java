@@ -18,9 +18,10 @@ public class FilmNews {
     private BigDecimal replacement_cost;
     private String rating;
     private String special_features;
+    private Integer category_id;
 
     //Constructor
-    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features){
+    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features, Integer category_id){
         this.title = title;
         this.description = description;
         this.release_year = release_year;
@@ -32,6 +33,7 @@ public class FilmNews {
         this.replacement_cost = replacement_cost;
         this.rating = rating;
         this.special_features = special_features;
+        this.category_id = category_id;
     }
 
     //Empty Constructor
@@ -64,7 +66,14 @@ public class FilmNews {
     public Optional<String> getSpecial_features(){return Optional.ofNullable(special_features);}
     public void setSpecial_features(String special_features){this.special_features = special_features;}
 
+    public Optional<Integer> getCategory_id(){return Optional.ofNullable(category_id);}
+    public void setCategory_id(Integer category_id){this.category_id = category_id;}
 
+    /*public Integer getCategory_id() {
+        return category_id;
+    }
 
-
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }*/
 }

@@ -1,6 +1,9 @@
 package com.tsi.v.sakila.connect.SpringbootSakilaProject.film;
 
 
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.category.CategoryRepository;
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategory;
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,9 +18,13 @@ public class FilmController {
 
 
     private FilmRepository filmRepository;
+    private FilmCategoryRepository filmCategoryRepository;
+    private CategoryRepository categoryRepository;
 
-    public FilmController(FilmRepository filmRepository){
+    public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, CategoryRepository categoryRepository){
         this.filmRepository = filmRepository;
+        this.filmCategoryRepository = filmCategoryRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     //@ResponseBody
@@ -26,6 +33,10 @@ public class FilmController {
     public @ResponseBody
     void addNewFilm(@RequestBody FilmNews filmNews){
         Film film = filmRepository.save(new Film(filmNews));
+
+        //add film category
+        FilmCategory filmCategory = new FilmCategory(film.getFilm_id(), filmNews.getCategory_id());
+        filmCategoryRepository.save(filmCategory);
     }
 
     //Get request / read function
