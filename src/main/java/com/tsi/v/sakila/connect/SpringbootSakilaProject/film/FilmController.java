@@ -2,14 +2,16 @@ package com.tsi.v.sakila.connect.SpringbootSakilaProject.film;
 
 
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.category.CategoryRepository;
-import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategory;
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategoryRepository;
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmactor.FilmActor;
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmactor.FilmActorRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController //handles GET, POST, DELETE, PUT requests
 @RequestMapping("/Sakila")
@@ -20,11 +22,13 @@ public class FilmController {
     private FilmRepository filmRepository;
     private FilmCategoryRepository filmCategoryRepository;
     private CategoryRepository categoryRepository;
+    private FilmActorRepository filmActorRepository;
 
-    public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, CategoryRepository categoryRepository){
+    public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository){
         this.filmRepository = filmRepository;
         this.filmCategoryRepository = filmCategoryRepository;
         this.categoryRepository = categoryRepository;
+        this.filmActorRepository = filmActorRepository;
     }
 
     //@ResponseBody
@@ -34,9 +38,20 @@ public class FilmController {
     void addNewFilm(@RequestBody FilmNews filmNews){
         Film film = filmRepository.save(new Film(filmNews));
 
-        //add film category
-        FilmCategory filmCategory = new FilmCategory(film.getFilm_id(), filmNews.getCategory_id());
-        filmCategoryRepository.save(filmCategory);
+        //create film actors connections
+        Integer filmId = film.getFilm_id();
+        createFilmActors(filmId, filmNews.getActorIds());
+
+    }
+    private void createFilmActors(Integer filmId, Set<Integer> actorIds){
+        if(actorIds == null) return;
+
+        List<FilmActor> filmActors = actorIds
+                .stream()
+                .map(actorId -> new FilmActor(filmId, actorId))
+                .toList();
+
+        filmActorRepository.saveAll(filmActors);
     }
 
     //Get request / read function
@@ -85,11 +100,37 @@ public class FilmController {
         Film film = filmRepository.findById(film_id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film id does not exist"));
         film.updateFromFilmNews(filmNews);
-        FilmCategory filmCategory = new FilmCategory(film.getFilm_id(), filmNews.getCategory_id());
-        filmCategoryRepository.save(filmCategory);
+
+        Integer filmId = film.getFilm_id();
+        updateFilmActors(filmId, filmNews.getActorIds());
+
         return filmRepository.save(film);
     }
 
+    private void updateFilmActors(Integer filmId, Set<Integer> actorIds){
+        if(actorIds == null) return;
+
+        Set<FilmActor> existingActorLinks = filmActorRepository.findByFilmActorKeyFilmId(filmId);
+
+        deleteUnwantedFilmActors(actorIds, existingActorLinks);
+        createNewFilmActors(filmId, actorIds, existingActorLinks);
+    }
+
+    private void deleteUnwantedFilmActors(Set<Integer> actorIds, Set<FilmActor> existingActorLinks){
+        existingActorLinks.stream()
+                .filter(filmActor -> !actorIds.contains(filmActor.getFilmActorKey().getActorId()))
+                .forEach(filmActorRepository::delete);
+    }
+    private void createNewFilmActors(Integer filmId, Set<Integer> actorIds, Set<FilmActor> existingActorLinks){
+        List<Integer> linkedActors = existingActorLinks.stream()
+                .map(filmActor -> filmActor.getFilmActorKey().getActorId())
+                .toList();
+
+        actorIds.stream()
+                .filter(actorId -> !linkedActors.contains(actorId))
+                .map(actorId -> new FilmActor(filmId, actorId))
+                .forEach(filmActorRepository::save);
+    }
 
     //Deletes film based on film_id
     @DeleteMapping("/Delete_Film_By_Id")

@@ -2,6 +2,7 @@ package com.tsi.v.sakila.connect.SpringbootSakilaProject.film;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Set;
 
 //Data Transfer Object for PATCH Request
 public class FilmNews {
@@ -18,10 +19,11 @@ public class FilmNews {
     private BigDecimal replacement_cost;
     private String rating;
     private String special_features;
-    private Integer category_id;
+
+    private Set<Integer> actorIds;
 
     //Constructor
-    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features, Integer category_id){
+    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features){
         this.title = title;
         this.description = description;
         this.release_year = release_year;
@@ -33,7 +35,6 @@ public class FilmNews {
         this.replacement_cost = replacement_cost;
         this.rating = rating;
         this.special_features = special_features;
-        this.category_id = category_id;
     }
 
     //Empty Constructor
@@ -42,10 +43,8 @@ public class FilmNews {
     //Methods
     public Optional<String> getTitle(){return Optional.ofNullable(title);}
     public void setTitle(String title){this.title = title;}
-
     public Optional<String> getDescription(){return Optional.ofNullable(description);}
     public void setDescription(String description){this.description = description;}
-
     public Optional<Integer> getRelease_year(){return Optional.ofNullable(release_year);}
     public void setRelease_year(Integer release_year){this.release_year = release_year;}
     public Optional<Integer> getLanguage_id(){return Optional.ofNullable(language_id);}
@@ -54,7 +53,6 @@ public class FilmNews {
     public void setOriginal_language_id(Integer original_language_id){this.original_language_id = original_language_id;}
     public Optional<Integer> getRental_duration(){return Optional.ofNullable(rental_duration);}
     public void setRental_duration(Integer rental_duration){this.rental_duration = rental_duration;}
-
     public Optional<BigDecimal> getRental_rate(){return Optional.ofNullable(rental_rate);}
     public void setRental_rate(BigDecimal rental_rate){this.rental_rate = rental_rate;}
     public Optional<Integer> getLength(){return Optional.ofNullable(length);}
@@ -66,12 +64,10 @@ public class FilmNews {
     public Optional<String> getSpecial_features(){return Optional.ofNullable(special_features);}
     public void setSpecial_features(String special_features){this.special_features = special_features;}
 
-
-    public Integer getCategory_id() {
-        return category_id;
+    public Set<Integer> getActorIds() {
+        return actorIds;
     }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setActorIds(Set<Integer> actorIds) {
+        this.actorIds = actorIds;
     }
 }
