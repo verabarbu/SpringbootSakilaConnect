@@ -85,8 +85,11 @@ public class FilmController {
         Film film = filmRepository.findById(film_id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film id does not exist"));
         film.updateFromFilmNews(filmNews);
+        FilmCategory filmCategory = new FilmCategory(film.getFilm_id(), filmNews.getCategory_id());
+        filmCategoryRepository.save(filmCategory);
         return filmRepository.save(film);
     }
+
 
     //Deletes film based on film_id
     @DeleteMapping("/Delete_Film_By_Id")

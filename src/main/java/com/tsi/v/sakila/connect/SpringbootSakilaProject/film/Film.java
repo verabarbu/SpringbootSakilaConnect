@@ -82,8 +82,7 @@ public class Film {
         this.replacement_cost = filmNews.getReplacement_cost().orElse(replacement_cost);
         this.rating = filmNews.getRating().orElse(rating);
         this.special_features = filmNews.getSpecial_features().orElse(special_features);
-        //this.category_id = filmNews.getCategory_id();
-        this.category_id = filmNews.getCategory_id().orElse(category_id);
+        this.category_id = filmNews.getCategory_id();
 
     }
 
@@ -183,13 +182,13 @@ public class Film {
         this.special_features = special_features;
     }
 
-    /*public Integer getCategory_id() {
+    public Integer getCategory_id() {
         return category_id;
     }
 
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
-    }*/
+    }
 
     public Set<Actor> getFilmActor(){
         return filmActor;
