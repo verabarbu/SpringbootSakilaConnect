@@ -2,7 +2,10 @@ package com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface FilmCategoryRepository extends CrudRepository<FilmCategory, Integer> {
+import java.util.Set;
 
+public interface FilmCategoryRepository extends CrudRepository<FilmCategory, FilmCategoryKey> {
+
+    Set<FilmCategory> findByFilmCategoryKeyFilmId(Integer filmId);
 
 }

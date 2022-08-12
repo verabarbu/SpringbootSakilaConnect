@@ -2,6 +2,7 @@ package com.tsi.v.sakila.connect.SpringbootSakilaProject.film;
 
 
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.category.CategoryRepository;
+import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategory;
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmCategory.FilmCategoryRepository;
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmactor.FilmActor;
 import com.tsi.v.sakila.connect.SpringbootSakilaProject.filmactor.FilmActorRepository;
@@ -32,7 +33,7 @@ public class FilmController {
     }
 
     //@ResponseBody
-    //Insert new film based on attributes: title, description, release_year, language_id, original_language_id, rental_duration, rental_rate,length, replacement_cost, rating, special features
+    //Insert new film based on filmNews data transfer object, actor and categories links
     @PostMapping("/Add_New_Film")
     public @ResponseBody
     void addNewFilm(@RequestBody FilmNews filmNews){
@@ -41,6 +42,9 @@ public class FilmController {
         //create film actors connections
         Integer filmId = film.getFilm_id();
         createFilmActors(filmId, filmNews.getActorIds());
+
+        //create film categories connections
+        createFilmCategories(filmId, filmNews.getCategoryIds());
 
     }
     private void createFilmActors(Integer filmId, Set<Integer> actorIds){
@@ -52,6 +56,15 @@ public class FilmController {
                 .toList();
 
         filmActorRepository.saveAll(filmActors);
+    }
+    private void createFilmCategories(Integer filmId, Set<Integer> categoryIDs){
+        if(categoryIDs == null) return;
+
+        List<FilmCategory> filmCategories = categoryIDs
+                .stream()
+                .map(categoryId -> new FilmCategory(filmId, categoryId))
+                .toList();
+        filmCategoryRepository.saveAll(filmCategories);
     }
 
     //Get request / read function
@@ -103,6 +116,7 @@ public class FilmController {
 
         Integer filmId = film.getFilm_id();
         updateFilmActors(filmId, filmNews.getActorIds());
+        updateFilmCategories(filmId, filmNews.getCategoryIds());
 
         return filmRepository.save(film);
     }
@@ -130,6 +144,32 @@ public class FilmController {
                 .filter(actorId -> !linkedActors.contains(actorId))
                 .map(actorId -> new FilmActor(filmId, actorId))
                 .forEach(filmActorRepository::save);
+    }
+
+    private void updateFilmCategories(Integer filmId, Set<Integer> categoryIds){
+        if (categoryIds == null) return;
+
+        Set<FilmCategory> existingCategoryLinks = filmCategoryRepository.findByFilmCategoryKeyFilmId(filmId);
+
+        deleteUnwantedFilmCategories(categoryIds, existingCategoryLinks);
+        createNewFilmCategories(filmId, categoryIds, existingCategoryLinks);
+    }
+
+    private void deleteUnwantedFilmCategories(Set<Integer> categoryIds, Set<FilmCategory> existingCategoryLinks){
+        existingCategoryLinks.stream()
+                .filter(filmCategory -> !categoryIds.contains(filmCategory.getFilmCategoryKey().getCategoryId()))
+                .forEach(filmCategoryRepository::delete);
+    }
+
+    private void createNewFilmCategories(Integer filmId, Set<Integer> categoryIds, Set<FilmCategory> existingCategoryLinks){
+        List<Integer> linkedCategories = existingCategoryLinks.stream()
+                .map(filmCategory -> filmCategory.getFilmCategoryKey().getCategoryId())
+                .toList();
+
+        categoryIds.stream()
+                .filter(categoryId -> !linkedCategories.contains(categoryId))
+                .map(categoryId -> new FilmCategory(filmId, categoryId))
+                .forEach(filmCategoryRepository::save);
     }
 
     //Deletes film based on film_id

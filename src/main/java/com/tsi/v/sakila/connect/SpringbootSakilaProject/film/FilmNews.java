@@ -19,8 +19,8 @@ public class FilmNews {
     private BigDecimal replacement_cost;
     private String rating;
     private String special_features;
-
     private Set<Integer> actorIds;
+    private Set<Integer> categoryIds;
 
     //Constructor
     public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features){
@@ -63,11 +63,16 @@ public class FilmNews {
     public void setRating(String rating){this.rating = rating;}
     public Optional<String> getSpecial_features(){return Optional.ofNullable(special_features);}
     public void setSpecial_features(String special_features){this.special_features = special_features;}
-
     public Set<Integer> getActorIds() {
         return actorIds;
     }
     public void setActorIds(Set<Integer> actorIds) {
         this.actorIds = actorIds;
+    }
+    public Set<Integer> getCategoryIds() {
+        return categoryIds;
+    }
+    public void setCategoryIds(Set<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 }

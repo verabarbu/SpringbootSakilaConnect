@@ -6,33 +6,32 @@ import java.io.Serializable;
 @Embeddable
 public class FilmCategoryKey implements Serializable {
 
-    @Id
-    @Column(name = "film_id")
-    private Integer film_id;
+    @Column(name = "film_id", nullable = false)
+    private Integer filmId;
 
-    @Id
-    @Column(name = "category_id")
-    private Integer category_id;
+    @Column(name = "category_id", nullable = false)
+    private Integer categoryId;
 
-    public FilmCategoryKey(Integer film_id, Integer category_id){
-        this.film_id = film_id;
-        this.category_id = category_id;
+    public FilmCategoryKey(Integer filmId, Integer categoryId){
+        this.filmId = filmId;
+        this.categoryId = categoryId;
     }
+
     public FilmCategoryKey(){}
 
-    public Integer getFilm_id() {
-        return film_id;
+    public Integer getFilmId() {
+        return filmId;
     }
 
-    public void setFilm_id(Integer film_id) {
-        this.film_id = film_id;
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
