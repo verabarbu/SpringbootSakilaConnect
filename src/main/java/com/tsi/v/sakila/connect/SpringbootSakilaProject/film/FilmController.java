@@ -25,11 +25,13 @@ public class FilmController {
     private CategoryRepository categoryRepository;
     private FilmActorRepository filmActorRepository;
 
+
     public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository){
         this.filmRepository = filmRepository;
         this.filmCategoryRepository = filmCategoryRepository;
         this.categoryRepository = categoryRepository;
         this.filmActorRepository = filmActorRepository;
+
     }
 
     //@ResponseBody
@@ -38,32 +40,37 @@ public class FilmController {
     public @ResponseBody
     void addNewFilm(@RequestBody FilmNews filmNews){
         Film film = filmRepository.save(new Film(filmNews));
+        Integer filmId = film.getFilm_id();
 
         //create film actors connections
-        Integer filmId = film.getFilm_id();
         createFilmActors(filmId, filmNews.getActorIds());
 
         //create film categories connections
         createFilmCategories(filmId, filmNews.getCategoryIds());
 
+
+
     }
+    //create film - actor relationship table
     private void createFilmActors(Integer filmId, Set<Integer> actorIds){
         if(actorIds == null) return;
-
+        //create filmActor entities
         List<FilmActor> filmActors = actorIds
                 .stream()
                 .map(actorId -> new FilmActor(filmId, actorId))
                 .toList();
-
+        //save filmActor entities
         filmActorRepository.saveAll(filmActors);
     }
-    private void createFilmCategories(Integer filmId, Set<Integer> categoryIDs){
-        if(categoryIDs == null) return;
-
-        List<FilmCategory> filmCategories = categoryIDs
+    //create film - category relationship table
+    private void createFilmCategories(Integer filmId, Set<Integer> categoryIds){
+        if(categoryIds == null) return;
+        //create filmCategory entities
+        List<FilmCategory> filmCategories = categoryIds
                 .stream()
                 .map(categoryId -> new FilmCategory(filmId, categoryId))
                 .toList();
+        //save filmCategory entities
         filmCategoryRepository.saveAll(filmCategories);
     }
 
@@ -113,14 +120,13 @@ public class FilmController {
         Film film = filmRepository.findById(film_id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film id does not exist"));
         film.updateFromFilmNews(filmNews);
-
+        //update film - actor and category relationships
         Integer filmId = film.getFilm_id();
         updateFilmActors(filmId, filmNews.getActorIds());
         updateFilmCategories(filmId, filmNews.getCategoryIds());
-
         return filmRepository.save(film);
     }
-
+    //update film - actor relationship
     private void updateFilmActors(Integer filmId, Set<Integer> actorIds){
         if(actorIds == null) return;
 
@@ -129,12 +135,13 @@ public class FilmController {
         deleteUnwantedFilmActors(actorIds, existingActorLinks);
         createNewFilmActors(filmId, actorIds, existingActorLinks);
     }
-
+    //delete film - actor relationship
     private void deleteUnwantedFilmActors(Set<Integer> actorIds, Set<FilmActor> existingActorLinks){
         existingActorLinks.stream()
                 .filter(filmActor -> !actorIds.contains(filmActor.getFilmActorKey().getActorId()))
                 .forEach(filmActorRepository::delete);
     }
+    //create new film - actor relationship
     private void createNewFilmActors(Integer filmId, Set<Integer> actorIds, Set<FilmActor> existingActorLinks){
         List<Integer> linkedActors = existingActorLinks.stream()
                 .map(filmActor -> filmActor.getFilmActorKey().getActorId())
@@ -145,7 +152,7 @@ public class FilmController {
                 .map(actorId -> new FilmActor(filmId, actorId))
                 .forEach(filmActorRepository::save);
     }
-
+    //update film - category relationship
     private void updateFilmCategories(Integer filmId, Set<Integer> categoryIds){
         if (categoryIds == null) return;
 
@@ -154,13 +161,13 @@ public class FilmController {
         deleteUnwantedFilmCategories(categoryIds, existingCategoryLinks);
         createNewFilmCategories(filmId, categoryIds, existingCategoryLinks);
     }
-
+    //delete film - category relationship
     private void deleteUnwantedFilmCategories(Set<Integer> categoryIds, Set<FilmCategory> existingCategoryLinks){
         existingCategoryLinks.stream()
                 .filter(filmCategory -> !categoryIds.contains(filmCategory.getFilmCategoryKey().getCategoryId()))
                 .forEach(filmCategoryRepository::delete);
     }
-
+    //create new film - actor relationship
     private void createNewFilmCategories(Integer filmId, Set<Integer> categoryIds, Set<FilmCategory> existingCategoryLinks){
         List<Integer> linkedCategories = existingCategoryLinks.stream()
                 .map(filmCategory -> filmCategory.getFilmCategoryKey().getCategoryId())

@@ -21,6 +21,7 @@ public class FilmNews {
     private String special_features;
     private Set<Integer> actorIds;
     private Set<Integer> categoryIds;
+    private Set<Integer> languageIds;
 
     //Constructor
     public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer rental_duration, BigDecimal rental_rate, Integer length, BigDecimal replacement_cost, String rating, String special_features){
@@ -74,5 +75,13 @@ public class FilmNews {
     }
     public void setCategoryIds(Set<Integer> categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    public Set<Integer> getLanguageIds() {
+        return languageIds;
+    }
+
+    public void setLanguageIds(Set<Integer> languageIds) {
+        this.languageIds = languageIds;
     }
 }

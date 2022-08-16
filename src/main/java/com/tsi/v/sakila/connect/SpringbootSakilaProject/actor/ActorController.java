@@ -10,15 +10,10 @@ import java.util.Optional;
 @RequestMapping("/Sakila")
 
 public class ActorController {
-
-
     private ActorRepository actorRepository;
-
     public ActorController (ActorRepository actorRepository){
         this.actorRepository = actorRepository;
     }
-
-
     //@ResponseBody
     //Insert new film based on attributes: firstName, lastName
     @PostMapping("/Add_New_Actor")

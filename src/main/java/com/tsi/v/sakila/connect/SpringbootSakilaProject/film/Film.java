@@ -35,16 +35,7 @@ public class Film {
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    //Set<Category> filmCategory;
     List<Category> filmCategory = new ArrayList<>();
-
-    /*@ManyToMany
-    @JoinTable(
-            name = "film_language",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "language_id")
-    )
-    Set<Language> filmLanguage;*/
 
     //Attributes
     private String title;
@@ -58,8 +49,6 @@ public class Film {
     private BigDecimal replacement_cost;
     private String rating;
     private String special_features;
-
-
 
     //Data Transfer Object Constructor
     public Film(FilmNews filmNews){
@@ -82,8 +71,6 @@ public class Film {
         this.replacement_cost = filmNews.getReplacement_cost().orElse(replacement_cost);
         this.rating = filmNews.getRating().orElse(rating);
         this.special_features = filmNews.getSpecial_features().orElse(special_features);
-
-
     }
 
     public int getFilm_id() {
@@ -189,22 +176,6 @@ public class Film {
         this.filmActor = filmActor;
    }
 
-    /*public Set<Category> getFilmCategory() {
-        return filmCategory;
-    }
-
-    public void setFilmCategory(Set<Category> filmCategory) {
-        this.filmCategory = filmCategory;
-    }*/
-
-    /*public Set<Language> getFilmLanguage() {
-        return filmLanguage;
-    }
-
-    public void setFilmLanguage(Set<Language> filmLanguage) {
-        this.filmLanguage = filmLanguage;
-    }*/
-
     public List<Category> getFilmCategory() {
         return filmCategory;
     }
@@ -212,4 +183,6 @@ public class Film {
     public void setFilmCategory(List<Category> filmCategory) {
         this.filmCategory = filmCategory;
     }
+
+
 }

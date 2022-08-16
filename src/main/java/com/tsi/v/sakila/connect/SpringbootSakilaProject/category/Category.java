@@ -21,7 +21,6 @@ public class Category {
     @JsonIgnore
     @ManyToMany(mappedBy = "filmCategory")
     List<Film> films = new ArrayList<>();
-    //Set<Film> categoryFilm;
 
     //Attribute
     private String name;
