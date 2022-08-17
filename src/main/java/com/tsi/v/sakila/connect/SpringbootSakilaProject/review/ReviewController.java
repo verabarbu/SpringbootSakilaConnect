@@ -24,12 +24,22 @@ public class ReviewController {
     Iterable<Review> getAllReviews(){
         return reviewRepository.findAll();
     }
-    @GetMapping("Get_Review_By_Id")
+    @GetMapping("/Get_Review_By_Id")
     public @ResponseBody
     Optional<Review> getReviewById(@RequestParam int reviewId){
         return reviewRepository.findById(reviewId);
     }
-    @PatchMapping("Review/{reviewId}")
+    @GetMapping("/Get_Review_By_Film_Id")
+    public @ResponseBody
+    Iterable<Review> getReviewByFilmId(@RequestParam Integer filmId){
+        return reviewRepository.findAllByFilmId(filmId);
+    }
+    @GetMapping("/Get_Review_By_Film_Title")
+    public @ResponseBody
+    Iterable<Review> getReviewByFilmTitle(@RequestParam String title){
+        return reviewRepository.findAllByTitle(title);
+    }
+    @PatchMapping("/Review/{reviewId}")
     public @ResponseBody Review updateReviewById(@PathVariable Integer reviewId, @RequestBody ReviewNews reviewNews){
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review id does not exist"));
