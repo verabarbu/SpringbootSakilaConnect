@@ -10,10 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReviewTest {
     Review testReview = new Review();
     @Test
-    void test_reviewConstructor(){
-
-    }
-    @Test
     void test_setReviewId(){
         testReview.setReviewId(1);
         assertEquals(1, testReview.getReviewId(), "Can't get value");

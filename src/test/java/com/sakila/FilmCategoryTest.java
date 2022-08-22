@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FilmCategoryTest {
     FilmCategory testFilmCategory = new FilmCategory();
     @Test
-    void test_filmActorConstructor(){
-
-    }
-    @Test
     void test_setFilmCategoryKey(){
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();
         testFilmCategory.setFilmCategoryKey(filmCategoryKey);

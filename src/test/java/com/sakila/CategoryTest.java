@@ -9,11 +9,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CategoryTest {
-
-    @Test
-    void test_actorConstructor(){
-
-    }
     @Test
     void test_getCategory_id() {
         Category testCategory = new Category("Animation");
