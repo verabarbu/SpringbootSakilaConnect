@@ -1,49 +1,43 @@
 package com.sakila;
 
 import com.sakila.actor.Actor;
-import com.sakila.actor.ActorNews;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class ActorTest {
-
+public class ActorTest {
+    Actor testActor = new Actor();
+    @Test
+    void test_actorConstructor(){
+        assertEquals("Andreea", testActor.getFirstName(), "Can't get firstName");
+        assertEquals("Marin", testActor.getLastName(), "Can't get lastName");
+    }
     @Test
     void test_getActorId(){
-        Actor testActor = new Actor();
+        assertEquals(205, testActor.getActorId(), "Can't get id");
+    }
+    @Test
+    void test_setActorId() {
         testActor.setActorId(205);
         assertEquals(205, testActor.getActorId(), "Can't get id");
     }
-
-    @Test
-    void test_getFirstName(){
-        ActorNews testActorNews = new ActorNews("Andreea", "Marin");
-        assertEquals(Optional.of("Andreea"), testActorNews.getFirstName(), "Can't get firstName");
-    }
-
     @Test
     void test_setFirstName(){
-        ActorNews testActorNews = new ActorNews("Andreea", "Marin");
-        testActorNews.setFirstName("Ana");
-        assertEquals(Optional.of("Ana"), testActorNews.getFirstName(), "Can't set firstName");
+        testActor.setFirstName("Andreea");
+        assertEquals("Andreea", testActor.getFirstName(), "Can't get firstName");
     }
-
     @Test
-    void test_getLastName(){
-        ActorNews testActorNews = new ActorNews("Andreea", "Marin");
-        assertEquals(Optional.of("Marin"), testActorNews.getLastName(), "Can't get lastName");
+    void test_getFirstName(){
+        assertEquals("Andreea", testActor.getFirstName(), "Can't get firstName");
     }
-
     @Test
     void test_setLastName(){
-        ActorNews testActorNews = new ActorNews("Andreea", "Marin");
-        testActorNews.setLastName("Martin");
-        assertEquals(Optional.of("Martin"), testActorNews.getLastName(), "Can't set lastName");
+        testActor.setLastName("Marin");
+        assertEquals("Marin", testActor.getLastName(), "Can't get lastName");
+    }
+    @Test
+    void test_getLastName(){
+        assertEquals("Marin", testActor.getLastName(), "Can't get lastName" );
     }
 
-
 }
-
