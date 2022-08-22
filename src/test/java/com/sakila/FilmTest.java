@@ -8,8 +8,9 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilmTest {
+class FilmTest {
     Film testFilm = new Film();
+
     @Test
     void test_setFilmId() {
         testFilm.setFilmId(1010);

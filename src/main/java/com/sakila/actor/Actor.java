@@ -39,7 +39,6 @@ public class Actor {
     public void updateFromActorNews(ActorNews actorNews){
         this.firstName = actorNews.getFirstName().orElse(firstName);
         this.lastName = actorNews.getLastName().orElse(lastName);
-
     }
 
     public int getActorId() {

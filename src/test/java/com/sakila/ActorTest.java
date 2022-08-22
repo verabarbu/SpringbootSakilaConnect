@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ActorTest {
+class ActorTest {
     Actor testActor = new Actor();
+    @Test
+    void test_actorConstructor(){
 
-
+    }
     @Test
     void test_setActorId() {
         testActor.setActorId(205);
