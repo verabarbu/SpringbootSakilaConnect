@@ -44,7 +44,6 @@ public class Film {
     private Integer original_language_id;
     private Integer length;
     private String rating;
-    private String special_features;
 
     //Data Transfer Object Constructor
     public Film(FilmNews filmNews){
@@ -63,7 +62,6 @@ public class Film {
         this.original_language_id = filmNews.getOriginal_language_id().orElse(original_language_id);
         this.length = filmNews.getLength().orElse(length);
         this.rating = filmNews.getRating().orElse(rating);
-        this.special_features = filmNews.getSpecial_features().orElse(special_features);
     }
 
     public int getFilm_id() {
@@ -128,14 +126,6 @@ public class Film {
 
     public void setRating(String rating) {
         this.rating = rating;
-    }
-
-    public String getSpecial_features() {
-        return special_features;
-    }
-
-    public void setSpecial_features(String special_features) {
-        this.special_features = special_features;
     }
 
     public Set<Actor> getFilmActor(){

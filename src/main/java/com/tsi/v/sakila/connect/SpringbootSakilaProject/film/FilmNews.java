@@ -14,13 +14,12 @@ public class FilmNews {
     private Integer original_language_id;
     private Integer length;
     private String rating;
-    private String special_features;
     private Set<Integer> actorIds;
     private Set<Integer> categoryIds;
     private Set<Integer> languageIds;
 
     //Constructor
-    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer length, String rating, String special_features){
+    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer length, String rating){
         this.title = title;
         this.description = description;
         this.release_year = release_year;
@@ -28,7 +27,6 @@ public class FilmNews {
         this.original_language_id = original_language_id;
         this.length = length;
         this.rating = rating;
-        this.special_features = special_features;
     }
 
     //Empty Constructor
@@ -49,8 +47,6 @@ public class FilmNews {
     public void setLength(Integer length){this.length = length;}
     public Optional<String> getRating(){return Optional.ofNullable(rating);}
     public void setRating(String rating){this.rating = rating;}
-    public Optional<String> getSpecial_features(){return Optional.ofNullable(special_features);}
-    public void setSpecial_features(String special_features){this.special_features = special_features;}
     public Set<Integer> getActorIds() {
         return actorIds;
     }
