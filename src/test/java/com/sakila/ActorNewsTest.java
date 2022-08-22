@@ -10,7 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class ActorNewsTest {
-    
+    @Test
+    void test_actorNewsConstructor(){
+        ActorNews testActorNews = new ActorNews("Andreea", "Marin");
+        assertEquals("Andreea", testActorNews.getFirstName(),"Can't get firstName" );
+        assertEquals("Marin", testActorNews.getLastName(),"Can't get lastName" );
+
+    }
+
     @Test
     void test_setActorId() {
         Actor testActor = new Actor();

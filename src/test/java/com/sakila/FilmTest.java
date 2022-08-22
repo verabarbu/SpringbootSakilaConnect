@@ -1,106 +1,66 @@
 package com.sakila;
 
 import com.sakila.film.Film;
-import com.sakila.film.FilmNews;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class FilmTest {
-
+public class FilmTest {
+    Film testFilm = new Film();
     @Test
-    void test_getFilmId() {
-        Film testFilm = new Film();
+    void test_setFilmId() {
         testFilm.setFilmId(1010);
         assertEquals(1010, testFilm.getFilmId(), "Can't get id");
     }
-
-    @Test
-    void test_getTitle() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of("Bourne Identity"), testFilmNews.getTitle(), "Can't get title");
-    }
-
     @Test
     void test_setTitle() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setTitle("Bourne Identity");
-        assertEquals(Optional.of("Bourne Identity"), testFilmNews.getTitle(), "Can't set title");
+        testFilm.setTitle("Bourne Identity");
+        assertEquals("Bourne Identity", testFilm.getTitle(), "Can't get title");
     }
-
-    @Test
-    void test_getDescription() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of("Blackwater project"), testFilmNews.getDescription(), "Can't get description");
-    }
-
     @Test
     void test_setDescription() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setDescription("Blackwater project");
-        assertEquals(Optional.of("Blackwater project"), testFilmNews.getDescription(), "Can't set description");
+        testFilm.setDescription("Blackwater project");
+        assertEquals("Blackwater project", testFilm.getDescription(), "Can't get description");
     }
-    @Test
-    void test_getReleaseYear() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(2002), testFilmNews.getReleaseYear(), "Can't get release year");
-    }
-
     @Test
     void test_setReleaseYear() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1,50, "G");
-        testFilmNews.setReleaseYear(2002);
-        assertEquals(Optional.of(2002), testFilmNews.getReleaseYear(), "Can't set release year");
+        testFilm.setReleaseYear(2002);
+        assertEquals(2002, testFilm.getReleaseYear(), "Can't get release year");
     }
-    @Test
-    void test_getLanguageId() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(1), testFilmNews.getLanguageId(), "Can't get language id");
-    }
-
     @Test
     void test_setLanguageId() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setLanguageId(1);
-        assertEquals(Optional.of(1), testFilmNews.getLanguageId(), "Can't set language id");
+        testFilm.setLanguageId(1);
+        assertEquals(1, testFilm.getLanguageId(), "Can't get language id");
     }
-    @Test
-    void test_getOriginalLanguageId() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(1), testFilmNews.getOriginalLanguageId(), "Can't get original language id");
-    }
-
     @Test
     void test_setOriginalLanguageId() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50,  "G");
-        testFilmNews.setOriginalLanguageId(1);
-        assertEquals(Optional.of(1), testFilmNews.getOriginalLanguageId(), "Can't set original language id");
+        testFilm.setOriginalLanguageId(1);
+        assertEquals(1, testFilm.getOriginalLanguageId(), "Can't get original language id");
     }
-    
-    @Test
-    void test_getLength() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(50), testFilmNews.getLength(), "Can't get length");
-    }
-
     @Test
     void test_setLength() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setLength(50);
-        assertEquals(Optional.of(50), testFilmNews.getLength(), "Can't set length");
+        testFilm.setLength(50);
+        assertEquals(50, testFilm.getLength(), "Can't get length");
     }
-    @Test
-    void test_getRating() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1,null, 50, "G");
-        assertEquals(Optional.of("G"), testFilmNews.getRating(), "Can't get rating");
-    }
-
     @Test
     void test_setRating() {
-        FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setRating("G");
-        assertEquals(Optional.of("G"), testFilmNews.getRating(), "Can't set rating");
+        testFilm.setRating("G");
+        assertEquals("G", testFilm.getRating(), "Can't get rating");
     }
+    @Test
+    void test_setFilmActor(){
+        Set<com.sakila.actor.Actor> filmActor = new java.util.HashSet<>();
+        testFilm.setFilmActor(filmActor);
+        assertEquals(filmActor, testFilm.getFilmActor(), "Can't film actor");
+    }
+    @Test
+    void test_setFilmCategory(){
+        List<com.sakila.category.Category> filmCategory = new java.util.ArrayList<>();
+        testFilm.setFilmCategory(filmCategory);
+        assertEquals(filmCategory, testFilm.getFilmCategory(), "Can't get film category");
+    }
+
 }
