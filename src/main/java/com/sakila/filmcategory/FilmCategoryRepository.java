@@ -1,4 +1,4 @@
-package com.sakila.filmCategory;
+package com.sakila.filmcategory;
 
 import org.springframework.data.repository.CrudRepository;
 

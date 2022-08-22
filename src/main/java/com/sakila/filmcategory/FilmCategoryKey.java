@@ -1,4 +1,4 @@
-package com.sakila.filmCategory;
+package com.sakila.filmcategory;
 
 import javax.persistence.*;
 import java.io.Serializable;

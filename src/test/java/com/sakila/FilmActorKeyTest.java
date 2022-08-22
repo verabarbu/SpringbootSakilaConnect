@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilmActorKeyTest {
+class FilmActorKeyTest {
     @Test
     void test_filmActorKeyConstructor(){
         FilmActorKey testFilmActorKey = new FilmActorKey(1, 1);

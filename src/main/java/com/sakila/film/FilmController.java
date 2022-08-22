@@ -2,8 +2,8 @@ package com.sakila.film;
 
 
 import com.sakila.category.CategoryRepository;
-import com.sakila.filmCategory.FilmCategory;
-import com.sakila.filmCategory.FilmCategoryRepository;
+import com.sakila.filmcategory.FilmCategory;
+import com.sakila.filmcategory.FilmCategoryRepository;
 import com.sakila.filmactor.FilmActor;
 import com.sakila.filmactor.FilmActorRepository;
 import org.springframework.http.HttpStatus;

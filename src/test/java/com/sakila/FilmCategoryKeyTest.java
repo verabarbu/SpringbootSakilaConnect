@@ -1,11 +1,11 @@
 package com.sakila;
 
-import com.sakila.filmCategory.FilmCategoryKey;
+import com.sakila.filmcategory.FilmCategoryKey;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilmCategoryKeyTest {
+class FilmCategoryKeyTest {
     @Test
     void test_filmCategoryKeyConstructor(){
         FilmCategoryKey testFilmCategoryKey = new FilmCategoryKey(1, 1);

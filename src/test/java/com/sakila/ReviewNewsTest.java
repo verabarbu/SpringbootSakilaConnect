@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReviewNewsTest {
+class ReviewNewsTest {
     @Test
     void test_setFilmId(){
         ReviewNews testReviewNews = new ReviewNews();
