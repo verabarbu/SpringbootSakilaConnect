@@ -40,7 +40,7 @@ public class FilmController {
     public @ResponseBody
     void addNewFilm(@RequestBody FilmNews filmNews){
         Film film = filmRepository.save(new Film(filmNews));
-        Integer filmId = film.getFilm_id();
+        Integer filmId = film.getFilmId();
 
         //create film actors connections
         createFilmActors(filmId, filmNews.getActorIds());
@@ -89,11 +89,11 @@ public class FilmController {
         return filmRepository.findByTitle(title);
     }
 
-    //Returns film based on film_id input
+    //Returns film based on filmId input
     @GetMapping("/Get_Film_By_Id")
     public  @ResponseBody
-    Optional<Film> getFilmById(@RequestParam int film_id){
-        return filmRepository.findById(film_id);
+    Optional<Film> getFilmById(@RequestParam int filmId){
+        return filmRepository.findById(filmId);
     }
 
     //Returns films based on actor firstName and lastName input
@@ -110,18 +110,14 @@ public class FilmController {
         return filmRepository.findByFilmCategoryName(name);
     }
 
-    /*@GetMapping("/Get_Films_By_Language")
-    public @ResponseBody
-    List<Film> getFilmsByLanguage(@RequestParam String name){return filmRepository.findByFilmLanguageName(name);}*/
-
     //Updates films attributes
-    @PatchMapping("/Film/{film_id}")
-    public @ResponseBody Film updateFilmById(@PathVariable int film_id, @RequestBody FilmNews filmNews){
-        Film film = filmRepository.findById(film_id)
+    @PatchMapping("/Film/{filmId}")
+    public @ResponseBody Film updateFilmById(@PathVariable int filmId, @RequestBody FilmNews filmNews){
+        Film film = filmRepository.findById(filmId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film id does not exist"));
         film.updateFromFilmNews(filmNews);
         //update film - actor and category relationships
-        Integer filmId = film.getFilm_id();
+        filmId = film.getFilmId();
         updateFilmActors(filmId, filmNews.getActorIds());
         updateFilmCategories(filmId, filmNews.getCategoryIds());
         return filmRepository.save(film);
@@ -179,10 +175,10 @@ public class FilmController {
                 .forEach(filmCategoryRepository::save);
     }
 
-    //Deletes film based on film_id
+    //Deletes film based on filmId
     @DeleteMapping("/Delete_Film_By_Id")
     public @ResponseBody
-    void deleteFilmById(@RequestParam int film_id){
-        filmRepository.deleteById(film_id);
+    void deleteFilmById(@RequestParam int filmId){
+        filmRepository.deleteById(filmId);
     }
 }

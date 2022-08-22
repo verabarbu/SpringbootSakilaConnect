@@ -13,8 +13,8 @@ class FilmTest {
     @Test
     void test_getFilm_id() {
         Film testFilm = new Film();
-        testFilm.setFilm_id(1010);
-        assertEquals(1010, testFilm.getFilm_id(), "Can't get id");
+        testFilm.setFilmId(1010);
+        assertEquals(1010, testFilm.getFilmId(), "Can't get id");
     }
 
     @Test
@@ -45,38 +45,38 @@ class FilmTest {
     @Test
     void test_getRelease_year() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(2002), testFilmNews.getRelease_year(), "Can't get release year");
+        assertEquals(Optional.of(2002), testFilmNews.getReleaseYear(), "Can't get release year");
     }
 
     @Test
     void test_setRelease_year() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1,50, "G");
-        testFilmNews.setRelease_year(2002);
-        assertEquals(Optional.of(2002), testFilmNews.getRelease_year(), "Can't set release year");
+        testFilmNews.setReleaseYear(2002);
+        assertEquals(Optional.of(2002), testFilmNews.getReleaseYear(), "Can't set release year");
     }
     @Test
     void test_getLanguage_id() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(1), testFilmNews.getLanguage_id(), "Can't get language id");
+        assertEquals(Optional.of(1), testFilmNews.getLanguageId(), "Can't get language id");
     }
 
     @Test
     void test_setLanguage_id() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        testFilmNews.setLanguage_id(1);
-        assertEquals(Optional.of(1), testFilmNews.getLanguage_id(), "Can't set language id");
+        testFilmNews.setLanguageId(1);
+        assertEquals(Optional.of(1), testFilmNews.getLanguageId(), "Can't set language id");
     }
     @Test
     void test_getOriginal_language_id() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50, "G");
-        assertEquals(Optional.of(1), testFilmNews.getOriginal_language_id(), "Can't get original language id");
+        assertEquals(Optional.of(1), testFilmNews.getOriginalLanguageId(), "Can't get original language id");
     }
 
     @Test
     void test_setOriginal_language_id() {
         FilmNews testFilmNews = new FilmNews("Bourne Identity", "Blackwater project", 2002, 1, 1, 50,  "G");
-        testFilmNews.setOriginal_language_id(1);
-        assertEquals(Optional.of(1), testFilmNews.getOriginal_language_id(), "Can't set original language id");
+        testFilmNews.setOriginalLanguageId(1);
+        assertEquals(Optional.of(1), testFilmNews.getOriginalLanguageId(), "Can't set original language id");
     }
     
     @Test

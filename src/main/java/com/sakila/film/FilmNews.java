@@ -7,11 +7,12 @@ import java.util.Set;
 public class FilmNews {
 
     //Attributes
+
     private String title;
     private String description;
-    private Integer release_year;
-    private Integer language_id;
-    private Integer original_language_id;
+    private Integer releaseYear;
+    private Integer languageId;
+    private Integer originalLanguageId;
     private Integer length;
     private String rating;
     private Set<Integer> actorIds;
@@ -19,12 +20,12 @@ public class FilmNews {
     private Set<Integer> languageIds;
 
     //Constructor
-    public FilmNews(String title, String description, Integer release_year, Integer language_id, Integer original_language_id, Integer length, String rating){
+    public FilmNews(String title, String description, Integer releaseYear, Integer languageId, Integer originalLanguageId, Integer length, String rating){
         this.title = title;
         this.description = description;
-        this.release_year = release_year;
-        this.language_id = language_id;
-        this.original_language_id = original_language_id;
+        this.releaseYear = releaseYear;
+        this.languageId = languageId;
+        this.originalLanguageId = originalLanguageId;
         this.length = length;
         this.rating = rating;
     }
@@ -37,12 +38,12 @@ public class FilmNews {
     public void setTitle(String title){this.title = title;}
     public Optional<String> getDescription(){return Optional.ofNullable(description);}
     public void setDescription(String description){this.description = description;}
-    public Optional<Integer> getRelease_year(){return Optional.ofNullable(release_year);}
-    public void setRelease_year(Integer release_year){this.release_year = release_year;}
-    public Optional<Integer> getLanguage_id(){return Optional.ofNullable(language_id);}
-    public void setLanguage_id(Integer language_id){this.language_id = language_id;}
-    public Optional<Integer> getOriginal_language_id(){return Optional.ofNullable(original_language_id);}
-    public void setOriginal_language_id(Integer original_language_id){this.original_language_id = original_language_id;}
+    public Optional<Integer> getReleaseYear(){return Optional.ofNullable(releaseYear);}
+    public void setReleaseYear(Integer releaseYear){this.releaseYear = releaseYear;}
+    public Optional<Integer> getLanguageId(){return Optional.ofNullable(languageId);}
+    public void setLanguageId(Integer languageId){this.languageId = languageId;}
+    public Optional<Integer> getOriginalLanguageId(){return Optional.ofNullable(originalLanguageId);}
+    public void setOriginalLanguageId(Integer originalLanguageId){this.originalLanguageId = originalLanguageId;}
     public Optional<Integer> getLength(){return Optional.ofNullable(length);}
     public void setLength(Integer length){this.length = length;}
     public Optional<String> getRating(){return Optional.ofNullable(rating);}

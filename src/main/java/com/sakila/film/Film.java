@@ -16,7 +16,7 @@ public class Film {
     @Id
     @Column(name="film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int film_id;
+    private int filmId;
 
     //@ManyToMAny relationship with Actor
     @ManyToMany
@@ -37,11 +37,17 @@ public class Film {
     List<Category> filmCategory = new ArrayList<>();
 
     //Attributes
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
-    private Integer release_year;
-    private Integer language_id;
-    private Integer original_language_id;
+    @Column(name = "release_year")
+    private Integer releaseYear;
+    @Column(name = "language_id")
+    private Integer languageId;
+    @Column(name = "original_language_id")
+    private Integer originalLanguageId;
+    @Column(name = "length")
     private Integer length;
     private String rating;
 
@@ -57,19 +63,19 @@ public class Film {
     public void updateFromFilmNews(FilmNews filmNews){
         this.title = filmNews.getTitle().orElse(title);
         this.description = filmNews.getDescription().orElse(description);
-        this.release_year = filmNews.getRelease_year().orElse(release_year);
-        this.language_id = filmNews.getLanguage_id().orElse(language_id);
-        this.original_language_id = filmNews.getOriginal_language_id().orElse(original_language_id);
+        this.releaseYear = filmNews.getReleaseYear().orElse(releaseYear);
+        this.languageId = filmNews.getLanguageId().orElse(languageId);
+        this.originalLanguageId = filmNews.getOriginalLanguageId().orElse(originalLanguageId);
         this.length = filmNews.getLength().orElse(length);
         this.rating = filmNews.getRating().orElse(rating);
     }
 
-    public int getFilm_id() {
-        return film_id;
+    public int getFilmId() {
+        return filmId;
     }
 
-    public void setFilm_id(int film_id) {
-        this.film_id = film_id;
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
     }
 
     public String getTitle() {
@@ -88,28 +94,28 @@ public class Film {
         this.description = description;
     }
 
-    public Integer getRelease_year() {
-        return release_year;
+    public Integer getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setRelease_year(Integer release_year) {
-        this.release_year = release_year;
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
-    public Integer getLanguage_id() {
-        return language_id;
+    public Integer getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage_id(Integer language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(Integer languageId) {
+        this.languageId = languageId;
     }
 
-    public Integer getOriginal_language_id() {
-        return original_language_id;
+    public Integer getOriginalLanguageId() {
+        return originalLanguageId;
     }
 
-    public void setOriginal_language_id(Integer original_language_id) {
-        this.original_language_id = original_language_id;
+    public void setOriginalLanguageId(Integer originalLanguageId) {
+        this.originalLanguageId = originalLanguageId;
     }
 
     public Integer getLength() {
