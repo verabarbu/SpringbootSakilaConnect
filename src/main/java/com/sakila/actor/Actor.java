@@ -14,7 +14,7 @@ public class Actor {
     @Id
     @Column(name="actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int actor_id;
+    private int actorId;
 
     //@ManyToMany relationship with Film
     @ManyToMany(mappedBy = "filmActor")
@@ -42,12 +42,12 @@ public class Actor {
 
     }
 
-    public int getActor_id() {
-        return actor_id;
+    public int getActorId() {
+        return actorId;
     }
 
-    public void setActor_id(int actor_id) {
-        this.actor_id = actor_id;
+    public void setActorId(int actorId) {
+        this.actorId = actorId;
     }
 
     public String getFirstName() {

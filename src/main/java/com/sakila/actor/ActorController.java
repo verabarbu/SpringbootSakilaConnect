@@ -30,11 +30,11 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
-    //Returns actors based on actor_id input
+    //Returns actors based on actorId input
     @GetMapping("/Get_Actor_By_Id")
     public @ResponseBody
-    Optional<Actor> getActorById(@RequestParam int actor_id) {
-        return actorRepository.findById(actor_id);
+    Optional<Actor> getActorById(@RequestParam int actorId) {
+        return actorRepository.findById(actorId);
     }
 
     //Returns actors based on firstName input
@@ -45,19 +45,19 @@ public class ActorController {
     }
 
     //Updates actors attributes
-    @PatchMapping("/Actor/{actor_id}")
-    public @ResponseBody Actor updateActorById(@PathVariable int actor_id, @RequestBody ActorNews actorNews){
-        Actor actor = actorRepository.findById(actor_id)
+    @PatchMapping("/Actor/{actorId}")
+    public @ResponseBody Actor updateActorById(@PathVariable int actorId, @RequestBody ActorNews actorNews){
+        Actor actor = actorRepository.findById(actorId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor id does not exist"));
         actor.updateFromActorNews(actorNews);
         return actorRepository.save(actor);
     }
 
-    //Deletes actor based on actor_id
+    //Deletes actor based on actorId
     @DeleteMapping("/Delete_Actor_By_Id")
     public @ResponseBody
-    void deleteActorById(@RequestParam int actor_id){
-        actorRepository.deleteById(actor_id);
+    void deleteActorById(@RequestParam int actorId){
+        actorRepository.deleteById(actorId);
     }
 
 

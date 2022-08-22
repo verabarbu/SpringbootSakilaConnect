@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ActorTest {
 
     @Test
-    void test_getActor_id(){
+    void test_getActorId(){
         Actor testActor = new Actor();
-        testActor.setActor_id(205);
-        assertEquals(205, testActor.getActor_id(), "Can't get id");
+        testActor.setActorId(205);
+        assertEquals(205, testActor.getActorId(), "Can't get id");
     }
 
     @Test
