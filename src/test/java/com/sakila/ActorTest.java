@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ActorTest {
     Actor testActor = new Actor();
 
+
     @Test
     void test_setActorId() {
         testActor.setActorId(205);

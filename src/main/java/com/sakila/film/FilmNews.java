@@ -3,7 +3,7 @@ package com.sakila.film;
 import java.util.Optional;
 import java.util.Set;
 
-//Data Transfer Object for PATCH Request
+//Data Transfer Object for PUT and PATCH Request
 public class FilmNews {
 
     //Attributes

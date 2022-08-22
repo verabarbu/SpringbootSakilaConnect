@@ -13,8 +13,8 @@ class ActorNewsTest {
     @Test
     void test_actorNewsConstructor(){
         ActorNews testActorNews = new ActorNews("Andreea", "Marin");
-        assertEquals("Andreea", testActorNews.getFirstName(),"Can't get firstName" );
-        assertEquals("Marin", testActorNews.getLastName(),"Can't get lastName" );
+        assertEquals(Optional.of("Andreea"), testActorNews.getFirstName(),"Can't get firstName" );
+        assertEquals(Optional.of("Marin"), testActorNews.getLastName(),"Can't get lastName" );
 
     }
 
