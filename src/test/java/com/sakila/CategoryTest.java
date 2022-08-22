@@ -9,13 +9,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CategoryTest {
-    Category testCategory = new Category("Animation");
+
     @Test
     void test_actorConstructor(){
 
     }
     @Test
-    void test_getCategoryId() {
+    void test_getCategory_id() {
         Category testCategory = new Category("Animation");
         testCategory.setCategoryId(2);
         assertEquals(2, testCategory.getCategoryId(), "Can't get id");
@@ -35,6 +35,7 @@ class CategoryTest {
 
     @Test
     void test_setFilms(){
+        Category testCategory = new Category();
         List<Film> films = new java.util.ArrayList<>();
         testCategory.setFilms(films);
         assertEquals(films, testCategory.getFilms(), "Can't get film category");
