@@ -10,6 +10,7 @@ public class ReviewNews {
     private String comment;
     private BigDecimal score;
 
+
     public Optional<Integer> getFilmId(){
         return Optional.ofNullable(filmId);
     }
