@@ -1,6 +1,7 @@
 package com.tsi.v.sakila.connect.SpringbootSakilaProject.review;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "review")
@@ -22,6 +23,9 @@ public class Review {
     @Column(name = "comment", length = 1000)
     private String comment;
 
+    @Column(name = "score", nullable = false)
+    private BigDecimal score;
+
     public Review(ReviewNews reviewNews){
         this.updateFromReviewNews(reviewNews);
     }
@@ -33,6 +37,7 @@ public class Review {
         this.title = reviewNews.getTitle().orElse(title);
         this.author = reviewNews.getAuthor().orElse(author);
         this.comment = reviewNews.getComment().orElse(comment);
+        this.score = reviewNews.getScore().orElse(score);
     }
 
     public Integer getReviewId() {
@@ -73,5 +78,13 @@ public class Review {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
     }
 }

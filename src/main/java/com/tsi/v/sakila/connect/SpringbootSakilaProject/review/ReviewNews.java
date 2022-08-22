@@ -1,5 +1,6 @@
 package com.tsi.v.sakila.connect.SpringbootSakilaProject.review;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public class ReviewNews {
@@ -7,6 +8,7 @@ public class ReviewNews {
     private String title;
     private String author;
     private String comment;
+    private BigDecimal score;
 
     public Optional<Integer> getFilmId(){
         return Optional.ofNullable(filmId);
@@ -32,4 +34,6 @@ public class ReviewNews {
     public void setComment(String comment){
         this.comment = comment;
     }
+    public Optional<BigDecimal> getScore(){return Optional.ofNullable(score);}
+    public void setScore(BigDecimal score){this.score = score;}
 }
