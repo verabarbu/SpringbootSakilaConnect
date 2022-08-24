@@ -93,15 +93,26 @@ public class FilmController {
     //Returns film based on title input
     @GetMapping("/Get_Film_By_Title")
     public @ResponseBody
-    Iterable<Film>getFilmByTitle(@RequestParam String title) {
-        return filmRepository.findByTitle(title);
+    ResponseEntity<Object> getFilmByTitle(@RequestParam String title){
+        try{
+            Iterable<Film> result = filmRepository.findByTitle(title);
+            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
     }
 
     //Returns film based on filmId input
     @GetMapping("/Get_Film_By_Id")
     public  @ResponseBody
-    Optional<Film> getFilmById(@RequestParam int filmId){
-        return filmRepository.findById(filmId);
+    ResponseEntity<Object> getFilmById(@RequestParam int filmId){
+        try{
+            Optional<Film> result = filmRepository.findById(filmId);
+            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+
     }
 
     //Returns films based on actor firstName and lastName input
