@@ -1,4 +1,4 @@
-//package com.tsi.v.sakila.connect.SpringbootSakilaProject;
+//package com.sakila;
 
 /*import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/test/resources/Cucumber",
-        glue = "src/test/java/com/tsi/v/sakila/connect/SpringbootSakilaProject/AddAFilmStepDefs.java"
+        glue = "src/test/java/com/sakila/ActorStepDefs.java"
 )
 
 public class RunCucumberTest {

@@ -2,17 +2,20 @@ package com.sakila.film;
 
 
 import com.sakila.category.CategoryRepository;
-import com.sakila.filmcategory.FilmCategory;
-import com.sakila.filmcategory.FilmCategoryRepository;
 import com.sakila.filmactor.FilmActor;
 import com.sakila.filmactor.FilmActorRepository;
+import com.sakila.filmcategory.FilmCategory;
+import com.sakila.filmcategory.FilmCategoryRepository;
+import com.sakila.response.ResponseHandler;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 
 @RestController //handles GET, POST, DELETE, PUT requests
 @RequestMapping("/Sakila")
@@ -78,8 +81,13 @@ public class FilmController {
     //Returns all films
     @GetMapping("/All_Films")
     public @ResponseBody
-    Iterable<Film>getAllFilms(){
-        return filmRepository.findAll();
+    ResponseEntity<Object> getAllFilms(){
+        try {
+            Iterable<Film> result = filmRepository.findAll();
+            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
     }
 
     //Returns film based on title input
@@ -181,4 +189,6 @@ public class FilmController {
     void deleteFilmById(@RequestParam int filmId){
         filmRepository.deleteById(filmId);
     }
+
+
 }
