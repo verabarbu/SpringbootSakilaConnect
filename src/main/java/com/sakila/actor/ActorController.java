@@ -19,7 +19,7 @@ public class ActorController {
     @PostMapping("/Add_New_Actor")
     public @ResponseBody
     void addNewActor(@RequestBody ActorNews actorNews){
-        Actor actor = actorRepository.save(new Actor(actorNews));
+        actorRepository.save(new Actor(actorNews));
     }
 
     //Get request / read function
