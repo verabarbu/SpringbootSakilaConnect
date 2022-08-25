@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResponseHandler {
+    private ResponseHandler(){
+        throw new IllegalStateException("Utility class");
+    }
     public static ResponseEntity<Object> generateResponse(String message, HttpStatus status, Object responseObj) {
         Map<String, Object> map = new HashMap<>();
         map.put("message", message);
