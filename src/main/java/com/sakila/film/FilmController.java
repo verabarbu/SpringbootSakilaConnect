@@ -1,7 +1,6 @@
 package com.sakila.film;
 
 
-import com.sakila.category.CategoryRepository;
 import com.sakila.filmactor.FilmActor;
 import com.sakila.filmactor.FilmActorRepository;
 import com.sakila.filmcategory.FilmCategory;
@@ -25,14 +24,12 @@ public class FilmController {
 
     private FilmRepository filmRepository;
     private FilmCategoryRepository filmCategoryRepository;
-    private CategoryRepository categoryRepository;
     private FilmActorRepository filmActorRepository;
 
 
-    public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository){
+    public FilmController(FilmRepository filmRepository, FilmCategoryRepository filmCategoryRepository, FilmActorRepository filmActorRepository){
         this.filmRepository = filmRepository;
         this.filmCategoryRepository = filmCategoryRepository;
-        this.categoryRepository = categoryRepository;
         this.filmActorRepository = filmActorRepository;
 
     }
@@ -84,7 +81,7 @@ public class FilmController {
     ResponseEntity<Object> getAllFilms(){
         try {
             Iterable<Film> result = filmRepository.findAll();
-            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+            return ResponseHandler.generateResponse("Successfully retrieved all films!", HttpStatus.OK, result);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -96,7 +93,7 @@ public class FilmController {
     ResponseEntity<Object> getFilmByTitle(@RequestParam String title){
         try{
             Iterable<Film> result = filmRepository.findByTitle(title);
-            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+            return ResponseHandler.generateResponse("Successfully retrieved film by title!", HttpStatus.OK, result);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -108,7 +105,7 @@ public class FilmController {
     ResponseEntity<Object> getFilmById(@RequestParam int filmId){
         try{
             Optional<Film> result = filmRepository.findById(filmId);
-            return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, result);
+            return ResponseHandler.generateResponse("Successfully retrieved film by id!", HttpStatus.OK, result);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }

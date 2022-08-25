@@ -17,7 +17,7 @@ public class ReviewController {
     @PostMapping("/Add_New_Review")
     public @ResponseBody
     void addNewReview(@RequestBody ReviewNews reviewNews){
-        Review review = reviewRepository.save(new Review(reviewNews));
+        reviewRepository.save(new Review(reviewNews));
     }
     @GetMapping("/All_Reviews")
     public @ResponseBody
